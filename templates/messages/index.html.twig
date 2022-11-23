@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie
+{% endblock %}
+
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Messagerie</h1>
+                <p>Résumé de la messagerie</p>
+                <p>Reçus : {{ app.user.received|length }}</p>
+                <p>Envoyés : {{ app.user.sent|length }}</p>
+
+            </div>
+        </div>
+    </section>
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Envoyer un message</h1>
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                <div>{{ form_errors(form) }}</div>
+
+
+                <div>
+                    {{ form_label(form.message,'please enter the text',{'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
+                    {{ form_widget(form.message,{'attr':{'class':'block  h-15 shadow-sm border--gray-300
+                    dark:border-transparant
+						dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}}) }}
+                    {{ form_errors(form.message) }}
+                </div>
+                <div>
+                    {{ form_label(form.recipient,'please enter the text',{'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
+                    {{ form_widget(form.recipient,{'attr':{'class': 'block   shadow-sm
+                    border--gray-300
+                    dark:border-transparant
+						dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}}) }}
+                    {{ form_errors(form.recipient) }}
+                </div>
+                <div>
+                    <button type="submit"
+                            class="block  shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">
+                        Send
+                    </button>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
