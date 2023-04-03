@@ -3,7 +3,7 @@
 		<div class="flex justify-between items-center content-center  py-2 ">
 			<div class=" ">
 				<a href="{{ path('app_micro_post') }}">
-					<span class="sr-only">Your Company</span>
+
 					<img class="h-8 w-auto sm:h-10" src="{{ asset('build/images/unknown.png') }}" alt=""/>
 				</a>
 			</div>
@@ -16,54 +16,67 @@
 					</div>
 					<div class="flex content-center items-center">
 						<input type="text" name="search" id="search"
-						       class="px-11 mr-1 block w-full rounded-md  focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm "
+						       class="px-11 py-0.5 mr-1 block w-full rounded-md  focus:border-indigo-500
+						       focus:ring-indigo-500 sm:text-sm "
 						       placeholder="Search :">
+						<button type="button">
 						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
 						     class="bi bi-search" viewBox="0 0 16 16">
 							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 						</svg>
+						</button>
 					</div>
 				</div>
 			</div>
-
-			<a href="{{ path('app_micro_post_messages', { id: app.user.id }) }}">Chat
-			</a>
-			<div class="flex mr-8">
-				<div class="dropdown  relative inline-block">
-					<button class="dropbtn  text-black  align-left hover:border-4 hover:rounded-full hover">
-						<a href="{{ path('app_profile', { id: app.user.id }) }}">
-							{{ include('shared/_avatar.html.twig', {profile: app.user.userProfile, size:10},) }}</a>
-					</button>
-					<div class="border rounded dropdown-content p-4  bg-[#102027]  w-40  hidden absolute ">
-						<div class="text-left flex flex-col mx-auto ">
-							<p class="w-full  hover:shadow hover:shadow-2xl hover:border hover:border-red-500
+			<div class="flex items-center content-center">
+				<div class="pr-6">
+					<a href="{{ path('app_micro_post_messages', { id: app.user.id }) }}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+						     class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
+							<path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+						</svg>
+					</a></div>
+				<div class="mr-5">
+				<a href="{{ path('app_event_form') }}"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-calendar2-event-fill" viewBox="0 0 16 16">
+						<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zM11.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+					</svg></a></div>
+				<div class="flex mr-8">
+					<div class="dropdown  relative inline-block">
+						<button class="dropbtn  text-black  align-left hover:border-4 hover:rounded-full hover">
+							<a href="{{ path('app_profile', { id: app.user.id }) }}">
+								{{ include('shared/_avatar.html.twig', {profile: app.user.userProfile, size:10},) }}</a>
+						</button>
+						<div class="border rounded dropdown-content p-4  bg-[#102027]  w-40  hidden absolute ">
+							<div class="text-left flex flex-col mx-auto ">
+								<p class="w-full  hover:shadow hover:shadow-2xl hover:border hover:border-red-500
 							hover:bg-[#4f5b62]
 							text-[#c1d5e0]">{{ app.user
-								.email }}</p>
-							<br>
-							<a href="{{ path('app_logout') }}" class="w-full py-1 px-4 text-[#62727b] hover:border
+									.email }}</p>
+								<br>
+								<a href="{{ path('app_logout') }}" class="w-full py-1 px-4 text-[#62727b] hover:border
 							hover:bg-[#4f5b62] hover:border-red-500
 								hover:text-indigo-500">Sign out</a>
-							<a href="{{ path('app_settings_profile') }}"
-							   class="w-full py-1 px-2 hover:bg-[#4f5b62] hover:border hover:border-red-500
+								<a href="{{ path('app_settings_profile') }}"
+								   class="w-full py-1 px-2 hover:bg-[#4f5b62] hover:border hover:border-red-500
 							   text-indigo-600
 							   hover:text-indigo-500">Profile Settings</a>
-							<style>
-                                .dropdown-content a {
-                                    color: #c1d5e0;
-                                    text-decoration: none;
-                                    display: block;
-                                }
+								<style>
+                                    .dropdown-content a {
+                                        color: #c1d5e0;
+                                        text-decoration: none;
+                                        display: block;
+                                    }
 
-                                .dropdown:hover .dropdown-content {
-                                    display: block;
-                                    transform: translateX(-130px);
-                                }
+                                    .dropdown:hover .dropdown-content {
+                                        display: block;
+                                        transform: translateX(-130px);
+                                    }
 
-                                .dropdown:hover .dropbtn {
-                                    resize: block;
-                                }
-							</style>
+                                    .dropdown:hover .dropbtn {
+                                        resize: block;
+                                    }
+								</style>
+							</div>
 						</div>
 					</div>
 				</div>

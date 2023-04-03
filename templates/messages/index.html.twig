@@ -1,52 +1,116 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Messagerie
 {% endblock %}
+{% block bread %}
 
+{% endblock %}
 {% block body %}
-    <section class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Messagerie</h1>
-                <p>Résumé de la messagerie</p>
-                <p>Reçus : {{ app.user.received|length }}</p>
-                <p>Envoyés : {{ app.user.sent|length }}</p>
+	<div class="mt-4 w-screen">
+	<h1 class="ml-12 text-2xl">Messages</h1></div>
+	<br><br>
+	<div class="pl-4">
+		<section class=" container">
+			<div class="row">
+				<div class="flex ">
+					<p class="pr-4">Reçus : {{ app.user.received|length }} </p>
+					<p>Envoyés : {{ app.user.sent|length }} </p>
+				</div>
+			</div>
+		</section>
+		<br>
+		<section class=" container">
+			<div class="row">
+				<div class="col">
+					<h1>Envoyer un message</h1>
+					<br>
+					{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+					<div>{{ form_errors(form) }}</div>
+					<div class="flex ">
+						<div class="pr-4">
+							{{ form_label(form.recipient,'Destinataire',{'label_attr': {'class':'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
+							{{ form_widget(form.recipient,{'attr':{'class': 'block shadow-sm border-gray-300 dark:border-transparant dark:text-gray-800 rounded-md border p-2 pr-4 mt-1 mb-2'}}) }}
+							{{ form_errors(form.recipient) }}
+						</div>
+						<div class="pr-4">
+							{{ form_label(form.message,'Enter your message :',{'label_attr': {'class': 'block text-sm
+																				text-gray-700 dark:text-gray-300 font-medium'}}) }}
+							{{ form_widget(form.message,{'attr':{'class':'block h-11   px-14 shadow-sm border-gray-300
+                                                                                dark:border-transparant	dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}}) }}
+							{{ form_errors(form.message) }}
+						</div>
 
-            </div>
-        </div>
-    </section>
-    <section class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Envoyer un message</h1>
-                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-                <div>{{ form_errors(form) }}</div>
+						<div>
+							<button type="submit"
+							        class="block  shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700
+							        dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2
+							        mt-6 mb-2">
+								Send
+							</button>
+						</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class=" mt-6 container">
+			<div class="row">
+				<h1 class="text-xl"> Messages reçus : {{ app.user.received|length }}
+				                     nouveaux messages </h1>
+				<br>
+				{% for message in app.user.received %}
 
 
-                <div>
-                    {{ form_label(form.message,'please enter the text',{'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
-                    {{ form_widget(form.message,{'attr':{'class':'block  h-15 shadow-sm border--gray-300
-                    dark:border-transparant
-						dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}}) }}
-                    {{ form_errors(form.message) }}
-                </div>
-                <div>
-                    {{ form_label(form.recipient,'please enter the text',{'label_attr': {'class': 'block text-sm text-gray-700 dark:text-gray-300 font-medium'}}) }}
-                    {{ form_widget(form.recipient,{'attr':{'class': 'block   shadow-sm
-                    border--gray-300
-                    dark:border-transparant
-						dark:text-gray-800 rounded-md border p-2 mt-1 mb-2'}}) }}
-                    {{ form_errors(form.recipient) }}
-                </div>
-                <div>
-                    <button type="submit"
-                            class="block  shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">
-                        Send
-                    </button>
-                </div>
-                {{ form_end(form) }}
+				<div class="flex">
+					<div class="border rounded-2xl border-gray-500 p-2 ">
+						<div class="flex">
+							<div class="text-xl pr-4">{{ message.sender.email }} </div>
+							<div class=""> | {{ message.createdAt|date }}</div>
+						</div>
+						<br>
+						<div>{{ message.message }}</div>
 
-            </div>
-        </div>
-    </section>
+					</div>
+					<a href="{{ path("app_micro_post_messages_delete", {id: message.id}) }}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+						     class="bi bi-file-excel-fill text-danger" viewbox="0 0 16 16">
+							<path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.884 4.68L8 7.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 8l2.233 2.68a.5.5 0 0 1-.768.64L8 8.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 8 5.116 5.32a.5.5 0 1 1 .768-.64z"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+
+		</section>
+		{% endfor %}
+
+		<section class=" mb-3 mt-6 container">
+			<div class="row">
+				<h1 class="text-xl"> Messages Envoyés : {{ app.user.sent|length }}
+				                      messages </h1>
+				<br>
+				{% for message in app.user.sent %}
+
+
+				<div class="flex">
+					<div class="border rounded-2xl border-gray-500 p-2 ">
+						<div class="flex">
+							<div class="text-xl pr-4">{{ message.recipient.email }} </div>
+							<div class=""> | {{ message.createdAt|date }}</div>
+						</div>
+						<br>
+						<div>{{ message.message }}</div>
+
+					</div>
+					<a href="{{ path("app_micro_post_messages_delete", {id: message.id}) }}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+						     class="bi bi-file-excel-fill text-danger" viewbox="0 0 16 16">
+							<path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.884 4.68L8 7.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 8l2.233 2.68a.5.5 0 0 1-.768.64L8 8.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 8 5.116 5.32a.5.5 0 1 1 .768-.64z"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+
+		</section>
+		{% endfor %}
+
+	</div>
 {% endblock %}

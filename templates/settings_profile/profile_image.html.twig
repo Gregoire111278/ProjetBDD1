@@ -5,7 +5,7 @@
 	Profile image{% endblock %}
 {% block body %}
 	{{ include('settings_profile/_settings_profile_tabs.html.twig') }}
-
+<div class="ml-14">
 	<div class="flex items-center ">
 		{{ include('shared/_avatar.html.twig', {'size':32, profile: app.user.userProfile}) }}
 		<div class="ml-16 ">
@@ -15,12 +15,12 @@
 			{{ form_widget(form.profileImage,{'attr':{'class':'hidden'}}) }}
 			{{ form_errors(form.profileImage) }}</div>
 	</div>
-
 	<div>
 		<button type="submit"
 		        class="block w-4/12 shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">
 			Save changes
 		</button>
 	</div>
+</div>
 	{{ form_end(form) }}
 {% endblock %}

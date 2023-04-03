@@ -1,36 +1,47 @@
 {% extends 'base.html.twig' %}
 
 
-{% block bread %}
-Login
-{% endblock %}
+
 {% block body %}
 	{% block head %}
-		{% endblock %}
-	<div class="w-1/2 h-1/2 flex">
-	<form action="{{ path('app_login') }}" method="post">
-		<div>
-			<label class="block text-sm text-gray-700 dark:text-gray-300 font-medium">email</label>
-			<input class=" shadow-sm border--gray-300 dark:border-transparent
-	dark:text-gray-800 rounded-md border p-2 mt-1 mb-2" type="text" name="_username" value="{{ lastUsername }}"/>
+	{% endblock %}
+	<div class="flex h-screen items-center">
+		<div class="bg-gray-700 w-3/5 h-screen ml-0">
+			{% block bread %}
+
+			{% endblock %}
 		</div>
-		<div>
-			<label class="block text-sm text-gray-700 dark:text-gray-300 font-medium">Password</label>
-			<input class=" shadow-sm border--gray-300 dark:border-transparent dark:text-gray-800 rounded-md border
-			p-2 mt-1 mb-2" type="password" name="_password">
-		</div>
-		<input type="hidden" name="_target_path" value="/micro-post">
-		<div>
-			<button class="block w-4/12 shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500
-		 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2" type="submit">Login
-			</button>
-		</div>
-		<div>
-			<a href="{{ path('app_register') }}">Don't have an account, Sign up.</a>
-		</div>
+		<div class="m-auto">
+			<div class=" w-full flex content-center mx-auto">
+
+				<form action="{{ path('app_login') }}" method="post">
+					<h1 class="mx-auto text-4xl">Connection</h1>
+					<br><br>
+					<div>
+						<label class="block text-sm text-gray-700 dark:text-gray-300 font-medium">Email :</label>
+						<input class=" shadow-sm border--gray-300 dark:border-transparent
+						dark:text-gray-800 rounded-md border p-2 mt-1 mb-2" type="text" name="_username"
+						       value="{{ lastUsername }}"/>
+					</div>
+					<div>
+						<label class="block text-sm text-gray-700 dark:text-gray-300 font-medium">Password :</label>
+						<input class=" shadow-sm border--gray-300 dark:border-transparent dark:text-gray-800 rounded-md border
+							p-2 mt-1 mb-2" type="password" name="_password">
+					</div>
+					<input type="hidden" name="_target_path" value="/micro-post">
+					<div>
+						<button class="block w-4/12 shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500
+		                    dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2" type="submit">Login
+						</button>
+					</div>
+					<div>
+						<a href="{{ path('app_register') }}">Don't have an account, Sign up.</a>
+					</div>
 
 
-	</form>
+				</form>
+			</div>
+		</div>
 	</div>
 {% endblock %}
 

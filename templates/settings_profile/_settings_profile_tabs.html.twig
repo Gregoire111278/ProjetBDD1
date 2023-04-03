@@ -10,7 +10,7 @@ your Profile settings			{% endblock %}
 			{% endblock %}
 		{% endembed %}
 
-		{% embed 'shared/_tab.html.twig' with { route: 'app_settings_profile_image', classes: 'ml-2' } %}
+		{#  {% embed 'shared/_tab.html.twig' with { route: 'app_settings_profile_image', classes: 'ml-2' } %}
 			{% block content %}
 Your profile image
 			{% endblock %}
@@ -18,6 +18,6 @@ Your profile image
 				{{ path('app_settings_profile_image') }}
 			{% endblock %}
 		{% endembed %}
-
+		#}
 	{% endblock %}
 {% endembed %}

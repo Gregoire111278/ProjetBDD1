@@ -23,7 +23,7 @@
 
 				<div class="col-3 {{ bold }}">{{ message.sender.email }}</div>
 				<div class="col-3 {{ bold }}">
-					<a href="{{ path("app_micro_post_messages_read", {id: message.id}) }}">{{ message.title }}</a>
+					<a href="{{ path("app_micro_post_messages_read", {id: message.id}) }}"></a>
 				</div>
 				<div class="col-3 {{ bold }}">{{ message.createdAt|date }}</div>
 				<div class="col-3">

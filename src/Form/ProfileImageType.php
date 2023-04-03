@@ -13,7 +13,7 @@
 		{
 			$builder
 				-> add('profileImage', FileType::class,
-					['label' => 'Profile image (JPG orPNG file)',
+					['label' => 'Profile images (JPG orPNG file)',
 						'mapped' => false,
 						'required' => false,
 						'constraints' => [new File(

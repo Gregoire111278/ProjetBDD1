@@ -1,12 +1,17 @@
-<div class="flex justify-around items-center">
-	<div class="mb-2 w-5/12">
-		{{ include('shared/_avatar.html.twig', { profile: user.userProfile, size: 20 }) }}
+<div class=" flex justify-around items-center pt-4 lg:flex lg:flex-col lg:mx-auto lg:max-w-[600px]
+lg:min-w-[300px]">
+	<div class="mb-2 w-9/12 ">
+		<div class="lg:flex lg:flex-col lg:items-center">
+			<div class="">
 
-		<div class="text-2xl">{{ user.userProfile.name ?? user.email }}</div>
+				{{ include('shared/_avatar.html.twig', { profile: user.userProfile, size: 30 }) }}
+			</div>
+		</div>
+		<div class="lg:py-2 text-center text-2xl">{{ user.userProfile.name ?? user.email }}</div>
 		<div class="text-lg text-gray-500 dark:text-gray-400 font-normal">{{ user.email }}</div>
 
 		{% if user.userProfile != null %}
-			<div class="text-base text-gray-800 dark:text-gray-400 font-normal ">
+			<div class=" text-gray-800 dark:text-gray-400  ">
 				{{ user.userProfile.bio ?? 'No bio' }}
 			</div>
 
@@ -15,7 +20,8 @@
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" viewBox="0 0 20 20"
 					     fill="currentColor">
 						<path fill-rule="evenodd"
-						      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+						      d="M5.05 4.05a7 7 0 119.9 9.9L10- 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2
+						      0 000 4z"
 						      clip-rule="evenodd"/>
 					</svg> {{ user.userProfile.location ?? 'Unknown' }}
 				</div>
@@ -29,16 +35,18 @@
 				</div>
 			</div>
 		{% endif %}
+		<br>
 	</div>
-	<div class="ml-16 text-2xl">
 
+
+	<div class="flex flex-col">
 		{% block button %}
 			{% if currentUser.id == user.id %}
 			{% else %}
 				{{ include('follower/_follow_button.html.twig', { userToFollow: user }) }}
-
-				<a href="{{ path('app_micro_post_messages', { user: user.id }) }}" class="btn btn-primary">Envoyer un
-				                                                                                           message</a>
+				<br>
+				<a href="{{ path('app_micro_post_messages', { user: user.id }) }}"
+				   class="btn btn-primary">Chat</a>
 
 			{% endif %}
 		{% endblock %}

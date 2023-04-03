@@ -5,6 +5,7 @@ twig:
         - 'form/fields.html.twig'
     globals:
         profiles: '%profiles%'
+        images: '%images%'
 when@test:
     twig:
         strict_variables: true

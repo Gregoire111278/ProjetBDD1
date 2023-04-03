@@ -18,12 +18,6 @@
 		#[ORM\Column]
 		private ?int $id = null;
 
-		/*
-		 * #[ORM\Column(length: 255)]
-		#[Assert\NotBlank()]
-		#[Assert\Length(min: 5, max: 255, minMessage: 'Title is too short, 5 characters minimum')]
-		private ?string $title = null;
-		 */
 
 		#[ORM\Column(length: 500)]
 		#[Assert\NotBlank()]
@@ -43,6 +37,10 @@
 		#[ORM\JoinColumn(nullable: false)]
 		private ?User $author = null;
 
+		#[ORM\Column(length: 255, nullable: true)]
+		private ?string $image = null;
+
+
 		public function __construct()
 		{
 			$this -> comments = new ArrayCollection();
@@ -50,6 +48,7 @@
 			$this -> created = new DateTime;
 
 		}
+
 		public const EDIT = 'POST_EDIT';
 		public const VIEW = 'POST_VIEW';
 
@@ -58,20 +57,6 @@
 			return $this -> id;
 		}
 
-		/**
-		 *
-		public function getTitle(): ?string
-		{
-		return $this -> title;
-		}
-
-		public function setTitle(string $title): self
-		{
-		$this -> title = $title;
-
-		return $this;
-		}
-		 */
 
 		public function getText(): ?string
 		{
@@ -127,6 +112,7 @@
 			return $this;
 		}
 
+
 		/**
 		 * @return Collection<int, User>
 		 */
@@ -159,6 +145,18 @@
 		public function setAuthor(?User $author): self
 		{
 			$this -> author = $author;
+
+			return $this;
+		}
+
+		public function getImage(): ?string
+		{
+			return $this -> image;
+		}
+
+		public function setImage(?string $image): self
+		{
+			$this -> image = $image;
 
 			return $this;
 		}

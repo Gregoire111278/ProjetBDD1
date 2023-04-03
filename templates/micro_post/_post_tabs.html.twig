@@ -29,5 +29,14 @@
 
 			{% endblock %}
 		{% endembed %}
+		{% embed 'shared/_tab.html.twig' with { route: 'app_event', classes: 'ml-2' } %}
+			{% block content %}
+				Event
+			{% endblock %}
+			{% block path %}
+				{{ path('app_event') }}
+
+			{% endblock %}
+		{% endembed %}
 	{% endblock %}
 {% endembed %}

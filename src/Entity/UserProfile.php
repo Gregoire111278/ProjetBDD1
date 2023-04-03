@@ -23,8 +23,6 @@ class UserProfile
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $websiteUrl = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $twitterUsername = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $company = null;
@@ -83,17 +81,7 @@ class UserProfile
         return $this;
     }
 
-    public function getTwitterUsername(): ?string
-    {
-        return $this->twitterUsername;
-    }
 
-    public function setTwitterUsername(?string $twitterUsername): self
-    {
-        $this->twitterUsername = $twitterUsername;
-
-        return $this;
-    }
 
     public function getCompany(): ?string
     {

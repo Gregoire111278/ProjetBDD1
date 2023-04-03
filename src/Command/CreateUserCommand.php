@@ -24,7 +24,7 @@
 		public function __construct(private UserPasswordHasherInterface $userPasswordHasher,
 		                            private UserRepository              $users)
 		{
-parent::__construct();
+			parent ::__construct();
 		}
 
 		protected function configure(): void
@@ -46,7 +46,7 @@ parent::__construct();
 				$this -> userPasswordHasher -> hashPassword($user, $password)
 			);
 			$this -> users -> save($user, true);
-			$io -> success(sprintf('User %s account was created.' , $email));
+			$io -> success(sprintf('User %s account was created.', $email));
 
 			return Command::SUCCESS;
 		}

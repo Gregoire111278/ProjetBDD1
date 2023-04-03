@@ -2,22 +2,22 @@
 
 namespace App\Form;
 
-use App\Entity\MicroPost;
+use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 
-class MicroPostType extends AbstractType
+class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            //->add('title')
-            ->add('text', TextareaType::class, ['row_attr' => array('cols' => '3', 'rows' => '3')])
-	        -> add('postImage', FileType::class,
+            ->add('name')
+            ->add('type')
+	        ->add('description')
+	        -> add('eventImage', FileType::class,
 		        ['label' => ' image (JPG orPNG file)',
 			        'mapped' => false,
 			        'required' => false,
@@ -25,13 +25,14 @@ class MicroPostType extends AbstractType
 				        ['maxSize' => '1024k',
 					        'mimeTypes' => ['image/jpeg',
 						        'image/png']])]])
+            ->add('date')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => MicroPost::class,
+            'data_class' => Event::class,
         ]);
     }
 }
